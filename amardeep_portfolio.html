@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AMARDEEP — Computer Science Engineering student portfolio">
+<title>AMARDEEP | Student Portfolio</title>
+<style>
+:root {
+  --ink: #292342;
+  --muted: #716b86;
+  --accent: #7866d9;
+  --accent-dark: #5e4bc2;
+  --lavender: #eee9ff;
+  --lavender-light: #f8f6ff;
+  --pink: #f9edf8;
+  --white: #fff;
+  --line: #e9e3f6;
+  --shadow: 0 16px 42px rgba(71, 54, 119, .08);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: #fcfbff; color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.wrap { width: min(1100px, calc(100% - 36px)); margin: auto; }
+header {
+  position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px);
+  background: rgba(252,251,255,.88); border-bottom: 1px solid rgba(233,227,246,.8);
+}
+.nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.brand { font-weight: 850; letter-spacing: .08em; font-size: 1.08rem; }
+.brand span { color: var(--accent); }
+nav { display: flex; flex-wrap: wrap; gap: 22px; align-items: center; font-size: .9rem; color: var(--muted); }
+nav a:hover { color: var(--accent-dark); }
+.pill {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border-radius: 999px; padding: 11px 18px; font-weight: 700; font-size: .9rem;
+  background: var(--accent); color: white; box-shadow: 0 7px 18px rgba(120,102,217,.22);
+  transition: transform .2s, background .2s;
+}
+.pill:hover { transform: translateY(-2px); background: var(--accent-dark); }
+.pill.outline { background: transparent; color: var(--accent-dark); border: 1px solid #cfc4f7; box-shadow: none; }
+.hero { padding: 76px 0 54px; overflow: hidden; }
+.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 42px; align-items: center; }
+.eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .18em; font-size: .76rem; font-weight: 800; }
+h1 { margin: 12px 0 8px; font-size: clamp(3rem, 7vw, 5.2rem); line-height: .99; letter-spacing: -.065em; }
+.role { color: var(--accent-dark); font-size: clamp(1.08rem, 2vw, 1.35rem); font-weight: 700; margin: 16px 0; }
+.intro { color: var(--muted); max-width: 590px; font-size: 1.03rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.photo-frame { min-height: 360px; display: grid; place-items: center; position: relative; }
+.photo-frame::before, .photo-frame::after { content: ""; position: absolute; border-radius: 45% 55% 60% 40%; }
+.photo-frame::before { width: 285px; height: 310px; background: linear-gradient(145deg,#dcd2ff,#f5dff4); transform: rotate(-10deg); }
+.photo-frame::after { width: 240px; height: 260px; border: 1px solid #c9bdf7; transform: rotate(9deg); }
+.photo-placeholder {
+  z-index: 1; width: 238px; height: 258px; border-radius: 48% 48% 42% 42%;
+  background: linear-gradient(160deg,#f7f1ff,#e6ddff); border: 7px solid white;
+  box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 20px; color: var(--accent-dark);
+}
+.photo-placeholder svg { width: 64px; height: 64px; margin-bottom: 12px; }
+.photo-placeholder strong { font-size: .98rem; }
+.photo-placeholder small { color: var(--muted); font-size: .78rem; }
+.float-note { position: absolute; z-index: 2; right: 0; bottom: 32px; padding: 12px 16px; background: white; border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 16px; color: var(--muted); font-size: .84rem; }
+.section { padding: 26px 0 38px; scroll-margin-top: 85px; }
+.section-heading { margin-bottom: 20px; }
+.section-heading .eyebrow { letter-spacing: .14em; }
+h2 { font-size: clamp(1.65rem, 3vw, 2.2rem); letter-spacing: -.04em; line-height: 1.2; margin: 5px 0; }
+.lead { color: var(--muted); margin: 0; }
+.about-card { background: linear-gradient(120deg,#f0ebff,#fff8ff); border: 1px solid var(--line); padding: 28px; border-radius: 24px; box-shadow: var(--shadow); }
+.about-card p { margin: 0; color: #5e5874; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+.card { border: 1px solid var(--line); border-radius: 22px; padding: 24px; background: white; box-shadow: 0 10px 30px rgba(71,54,119,.045); }
+.card h3 { margin: 0 0 15px; font-size: 1.05rem; }
+.education-item { padding-left: 17px; border-left: 2px solid #d8cdfb; }
+.education-item strong { display: block; }
+.education-item p { color: var(--muted); margin: 5px 0 0; font-size: .92rem; }
+.skills { display: flex; flex-wrap: wrap; gap: 10px; }
+.skill { padding: 9px 14px; border-radius: 12px; background: var(--lavender-light); border: 1px solid #e7e0fb; color: var(--accent-dark); font-weight: 700; font-size: .9rem; }
+.project-placeholder { background: linear-gradient(135deg,#faf7ff,#fff); border: 1px dashed #cfc4f7; border-radius: 18px; padding: 23px; color: var(--muted); }
+.project-placeholder strong { display: block; color: var(--ink); margin-bottom: 5px; }
+.hobbies { display: flex; flex-wrap: wrap; gap: 10px; }
+.hobby { background: var(--pink); padding: 10px 14px; border-radius: 999px; font-size: .9rem; }
+.contact-card { background: var(--ink); color: white; border-radius: 26px; padding: 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.contact-card p { color: #d4cfea; margin: 6px 0 0; }
+.contact-card .pill { background: white; color: var(--accent-dark); box-shadow: none; white-space: nowrap; }
+footer { padding: 28px 0 36px; color: var(--muted); font-size: .85rem; text-align: center; }
+@media (max-width: 760px) {
+  .nav { padding: 14px 0; align-items: flex-start; flex-direction: column; gap: 10px; }
+  nav { gap: 13px; font-size: .83rem; }
+  .nav > .pill { display: none; }
+  .hero { padding: 45px 0 24px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 10px; }
+  .photo-frame { min-height: 300px; }
+  .photo-frame::before { width: 235px; height: 255px; }
+  .photo-frame::after { width: 200px; height: 215px; }
+  .photo-placeholder { width: 198px; height: 215px; }
+  .float-note { right: 8%; bottom: 12px; }
+  .info-grid { grid-template-columns: 1fr; }
+  .contact-card { align-items: flex-start; flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home">AMAR<span>DEEP</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#education">Education</a>
+      <a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="pill" href="#contact">Let's connect ↗</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Hello there, welcome to my space</div>
+        <h1>Hi, I'm<br><span style="color:var(--accent)">AMARDEEP.</span></h1>
+        <p class="role">Computer Science Engineering Student</p>
+        <p class="intro">A first-year student, creative thinker, and enthusiastic communicator exploring web development and turning ideas into engaging digital experiences.</p>
+        <div class="actions">
+          <a class="pill" href="#projects">Explore my work ↓</a>
+          <a class="pill outline" href="#contact">Contact me</a>
+        </div>
+      </div>
+      <div class="photo-frame" aria-label="Profile photo placeholder">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="21" r="12" fill="#b6a5f1"/><path d="M10 57c1-13 10-20 22-20s21 7 22 20" fill="#b6a5f1"/><circle cx="51" cy="12" r="5" fill="#8a76df"/></svg>
+          <strong>Your photo goes here</strong>
+          <small>Replace this placeholder with your portrait</small>
+        </div>
+        <div class="float-note">✦ Learn · Create · Grow</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section-heading"><div class="eyebrow">A little about me</div><h2>Curious mind, creative spirit.</h2></div>
+      <div class="about-card">
+        <p>I’m a first-year, first-semester student at <strong>Dr. RVR NRI Institute of Technology (Deemed to be University)</strong>. I’m an enthusiastic communicator and creative thinker with strengths in speaking, creative projects, and fast typing.</p>
+        <p style="margin-top:14px">I enjoy designing and building engaging web pages, as well as creating, structuring, and organizing digital documents and files. I’m excited to combine my technical abilities and creativity to build meaningful projects and connect with others.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="wrap info-grid">
+      <article class="card">
+        <div class="section-heading"><div class="eyebrow">My learning journey</div><h2>Education</h2></div>
+        <div class="education-item">
+          <strong>B.Tech — Computer Science Engineering</strong>
+          <p>Dr. RVR NRI Institute of Technology (Deemed to be University)</p>
+          <p>1st year · 1st semester · Currently studying</p>
+        </div>
+      </article>
+      <article class="card" id="skills">
+        <div class="section-heading"><div class="eyebrow">Things I'm learning</div><h2>Technical skills</h2></div>
+        <div class="skills">
+          <span class="skill">HTML</span><span class="skill">CSS</span><span class="skill">Python</span><span class="skill">C</span><span class="skill">C++</span>
+        </div>
+        <p class="lead" style="margin-top:17px;font-size:.92rem">Building a strong foundation, one concept at a time.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="section-heading"><div class="eyebrow">Made with curiosity</div><h2>Projects</h2><p class="lead">My project showcase will grow as I build and learn.</p></div>
+      <div class="project-placeholder"><strong>✨ First project coming soon</strong>Add your HTML/CSS assignments, Python programs, or personal projects here when you’re ready. No projects or achievements have been invented.</div>
+    </div>
+  </section>
+
+  <section class="section" id="interests">
+    <div class="wrap info-grid">
+      <article class="card">
+        <div class="section-heading"><div class="eyebrow">Outside the screen</div><h2>My interests</h2></div>
+        <div class="hobbies"><span class="hobby">♫ Listening to music</span><span class="hobby">✈ Travelling</span><span class="hobby">⛰ Adventures</span><span class="hobby">🏍 Riding</span></div>
+      </article>
+      <article class="card">
+        <div class="section-heading"><div class="eyebrow">What I bring</div><h2>Personal strengths</h2></div>
+        <div class="skills"><span class="skill">Communication</span><span class="skill">Creative thinking</span><span class="skill">Fast typing</span><span class="skill">Digital organization</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="contact-card">
+        <div><div class="eyebrow" style="color:#c5b8ff">Have an idea?</div><h2>Let's connect.</h2><p>Open to learning, collaboration, and creative conversations.</p></div>
+        <a class="pill" href="mailto:annepuamardeep@gmail.com">✉ Email me ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">Designed with care by AMARDEEP · Student portfolio</div></footer>
+</body>
+</html>
